@@ -16,19 +16,19 @@ function PokemonGuess({ onSubmit }) {
 
     return (
         <form className="guess-form" onSubmit={handleSubmit}>
-        <input
-            type="text"
-            value={guess}
-            onChange={(e) => setGuess(e.target.value)}
-            placeholder="Enter the Pokemon name"
-        />
-        <button className="submit-button" type="submit">
-            Guess Pokémon name
-        </button>
-        {/* Add the "Next Pokemon" button with the handleNextPokemon function */}
-        <button className="next-pokemon" type="button" onClick={handleNextPokemon}>
-            Next Pokémon
-        </button>
+            <input
+                type="text"
+                value={guess}
+                onChange={(e) => setGuess(e.target.value)}
+                placeholder="Enter the Pokemon name"
+            />
+            <button className="submit-button" type="submit">
+                Guess Pokémon name
+            </button>
+            {/* Add the "Next Pokemon" button with the handleNextPokemon function */}
+            <button className="next-pokemon" type="button" onClick={handleNextPokemon}>
+                Next Pokémon
+            </button>
         </form>
     );
 }
