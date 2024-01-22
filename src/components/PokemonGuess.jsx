@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import '../style/PokemonGuess.css'
+import '../style/PokemonGuess.css';
 
-function PokemonGuess({ onSubmit }) {
+function PokemonGuess({ onSubmit, onNextPokemonClick }) {
     const [guess, setGuess] = useState('');
 
     const handleSubmit = (e) => {
@@ -11,26 +11,27 @@ function PokemonGuess({ onSubmit }) {
     };
 
     const handleNextPokemon = () => {
-        window.location.reload();
+        onNextPokemonClick(); 
     };
 
     return (
         <form className="guess-form" onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={guess}
-                onChange={(e) => setGuess(e.target.value)}
-                placeholder="Enter the Pokemon name"
-            />
+        <input
+            type="text"
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
+            placeholder="Enter the Pokemon name"
+        />
+        <section className='buttons'>
             <button className="submit-button" type="submit">
                 Guess Pokémon name
             </button>
-            {/* Add the "Next Pokemon" button with the handleNextPokemon function */}
-            <button className="next-pokemon" type="button" onClick={handleNextPokemon}>
-                Next Pokémon
+            <button className="skip-pokemon" type="button" onClick={handleNextPokemon}>
+                Skip Pokémon
             </button>
+        </section>
         </form>
     );
 }
 
-    export default PokemonGuess;
+export default PokemonGuess;

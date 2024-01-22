@@ -1,13 +1,15 @@
 import '../style/PopUp.css'
-const PopUp = ({ message, onClose }) => {
+
+function PopUp ({ message, onClose, guessedPokemonName }) {
     return (
-        <div className="popup">
-        <div className="popup-content">
+    <section className="popup">
+        <section className="popup-content">
             <p>{message}</p>
+            {guessedPokemonName && <p>Guessed Pokémon: {guessedPokemonName}</p>}
             <button onClick={onClose}>Close</button>
-        </div>
-        </div>
+        </section>
+    </section>
     );
-};
+}
 
 export default PopUp;
