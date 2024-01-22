@@ -36,6 +36,7 @@ function ScoreCounter() {
         } catch (error) {
             console.error('Error fetching new random Pokemon:', error);
         }
+        window.location.reload();
         } else {
         setShowPopUp(true);
         setPopUpMessage('Oops! Try again.');
@@ -48,7 +49,6 @@ function ScoreCounter() {
 
     const handlePopUpClose = () => {
     setShowPopUp(false);
-    window.location.reload();
     };
 
     return (
