@@ -23,7 +23,7 @@ function PokemonGuess({ onSubmit }) {
             placeholder="Enter the Pokemon name"
         />
         <button className="submit-button" type="submit">
-            Submit Pokémon name
+            Guess Pokémon name
         </button>
         {/* Add the "Next Pokemon" button with the handleNextPokemon function */}
         <button className="next-pokemon" type="button" onClick={handleNextPokemon}>
