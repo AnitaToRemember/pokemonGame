@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../style/PokemonGuess.css'
 
 function PokemonGuess({ onSubmit }) {
     const [guess, setGuess] = useState('');
