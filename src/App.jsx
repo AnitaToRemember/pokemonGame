@@ -1,4 +1,4 @@
-import './App.css'
+import './style/App.css'
 import PokemonGameLayout from './components/PokemonGameLayout';
 import ScoreCounter from './components/ScoreCounter';
 import { GameScore } from './context/GameContext';
