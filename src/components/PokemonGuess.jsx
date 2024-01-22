@@ -1,6 +1,6 @@
-    import { useState } from 'react';
+import { useState } from 'react';
 
-    function PokemonGuess({ onSubmit }) {
+function PokemonGuess({ onSubmit }) {
     const [guess, setGuess] = useState('');
 
     const handleSubmit = (e) => {
@@ -9,9 +9,7 @@
         setGuess('');
     };
 
-    // Handler for the "Next Pokemon" button
     const handleNextPokemon = () => {
-        // Reload the page
         window.location.reload();
     };
 
@@ -24,14 +22,14 @@
             placeholder="Enter the Pokemon name"
         />
         <button className="submit-button" type="submit">
-            Submit Pokemon name
+            Submit Pokémon name
         </button>
         {/* Add the "Next Pokemon" button with the handleNextPokemon function */}
         <button className="next-pokemon" type="button" onClick={handleNextPokemon}>
-            Next Pokemon
+            Next Pokémon
         </button>
         </form>
     );
-    }
+}
 
     export default PokemonGuess;

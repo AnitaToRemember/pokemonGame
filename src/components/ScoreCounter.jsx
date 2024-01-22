@@ -1,16 +1,14 @@
-    // ScoreCounter.jsx
-    import { useEffect } from 'react';
-    import { PokemonGame } from '../context/GameContext';
-    import useRandomPokemon from '../hooks/useRandomPokemon';
-    import PokemonGuess from './PokemonGuess';
-    import PokemonPhoto from './PokemonPhoto';
-    import fetchPokemonById from '../services/fetchPokemonById'; // Import your actual fetchPokemonById function
+import { useEffect } from 'react';
+import { PokemonGame } from '../context/GameContext';
+import useRandomPokemon from '../hooks/useRandomPokemon';
+import PokemonGuess from './PokemonGuess';
+import PokemonPhoto from './PokemonPhoto';
+import fetchPokemonById from '../services/fetchPokemonById';
 
-    function ScoreCounter() {
+function ScoreCounter() {
     const { point, setPoint } = PokemonGame();
     const randomPokemon = useRandomPokemon();
 
-    // Load the score from localStorage on component mount
     useEffect(() => {
         const savedScore = localStorage.getItem('pokemonGameScore');
         if (savedScore !== null) {
@@ -23,12 +21,10 @@
         if (guess.toLowerCase() === randomPokemon.pokemon.name.toLowerCase()) {
             alert('Congratulations! You guessed it right.');
 
-            // Update the score and save it to localStorage
             const newPoint = point + 1;
             setPoint(newPoint);
             localStorage.setItem('pokemonGameScore', String(newPoint));
 
-            // Fetch a new random Pokemon when the score changes
             const fetchNewRandomPokemon = async () => {
             try {
                 const newRandomPokemonId = Math.floor(Math.random() * 1025) + 1;
@@ -39,7 +35,6 @@
             }
             };
 
-            // Refresh the page immediately after submitting a correct answer
             fetchNewRandomPokemon();
             window.location.reload();
         } else {
