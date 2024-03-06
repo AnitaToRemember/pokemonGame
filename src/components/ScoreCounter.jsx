@@ -3,7 +3,6 @@ import { PokemonGame } from '../context/GameContext';
 import useRandomPokemon from '../hooks/useRandomPokemon';
 import PokemonGuess from './PokemonGuess';
 import PokemonPhoto from './PokemonPhoto';
-import fetchPokemonById from '../services/fetchPokemonById';
 import PopUp from './PopUp';
 import ResetButton from './ResetButton';
 import '../style/PopUp.css';
@@ -11,11 +10,10 @@ import '../style/ScoreCounter.css';
 
 function ScoreCounter() {
     const { point, setPoint } = PokemonGame();
-    const randomPokemon = useRandomPokemon();
     const [showPopUp, setShowPopUp] = useState(false);
     const [popUpMessage, setPopUpMessage] = useState('');
     const [guessedPokemonName, setGuessedPokemonName] = useState('');
-    const [shouldReload, setShouldReload] = useState(false);
+    const { randomPokemon, fetchNewPokemon } = useRandomPokemon();
 
     useEffect(() => {
         const savedScore = localStorage.getItem('pokemonGameScore');
@@ -27,48 +25,38 @@ function ScoreCounter() {
     const handleGuess = async (guess) => {
         if (randomPokemon && randomPokemon.pokemon) {
             if (guess.toLowerCase() === randomPokemon.pokemon.name.toLowerCase()) {
-                setShowPopUp(true);
-                setGuessedPokemonName(randomPokemon.pokemon.name);
-                setPopUpMessage('Congratulations! You guessed it right.');
-                setShouldReload(true);
-
+                // Update the score
                 const newPoint = point + 1;
                 setPoint(newPoint);
                 localStorage.setItem('pokemonGameScore', String(newPoint));
-
-                try {
-                    const newRandomPokemonId = Math.floor(Math.random() * 1025) + 1;
-                    const newRandomPokemon = await fetchPokemonById(newRandomPokemonId);
-                    console.log('New Random Pokemon:', newRandomPokemon);
-                } catch (error) {
-                    console.error('Error fetching new random Pokemon:', error);
-                }
+    
+                // Show pop-up for correct guess and fetch new Pokémon
+                setShowPopUp(true);
+                setGuessedPokemonName(randomPokemon.pokemon.name);
+                setPopUpMessage('Congratulations! You guessed it right.');
+                fetchNewPokemon(); // Fetch new random Pokemon after correct guess
             } else {
+                // Show pop-up for incorrect guess
                 setShowPopUp(true);
                 setGuessedPokemonName('');
                 setPopUpMessage('Oops! Try again.');
-                setShouldReload(false);
             }
         } else {
+            // Show pop-up for error
             setShowPopUp(true);
             setGuessedPokemonName('');
             setPopUpMessage('Error: Cannot fetch or display Pokemon. Please try again.');
-            setShouldReload(false);
         }
-    };
+    };    
 
-    const handleNextPokemon = () => {
+    const handleSkip = () => {
         setShowPopUp(true);
         setPopUpMessage(`The correct answer is: ${randomPokemon.pokemon.name}`);
-        setGuessedPokemonName('');
-        setShouldReload(true);
+        fetchNewPokemon(); // Fetch new random Pokemon after skipping
     };
 
     const handlePopUpClose = () => {
         setShowPopUp(false);
-        if (shouldReload) {
-            window.location.reload();
-        }
     };
 
     return (
@@ -80,7 +68,7 @@ function ScoreCounter() {
             )}
             <p className="score-text">Score: {point}</p>
             <ResetButton />
-            <PokemonGuess onSubmit={handleGuess} onNextPokemonClick={handleNextPokemon} />
+            <PokemonGuess onSubmit={handleGuess} onNextPokemonClick={handleSkip} /> {/* Pass handleSkip as onNextPokemonClick */}
             {showPopUp && (
                 <PopUp message={popUpMessage} onClose={handlePopUpClose} guessedPokemonName={guessedPokemonName} />
             )}

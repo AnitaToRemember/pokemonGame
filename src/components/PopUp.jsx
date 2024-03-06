@@ -1,14 +1,13 @@
-import '../style/PopUp.css'
+import '../style/PopUp.css';
 
-function PopUp ({ message, onClose, guessedPokemonName }) {
+function PopUp ({ message, onClose, show }) {
     return (
-    <section className="popup">
-        <section className="popup-content">
-            <p>{message}</p>
-            {guessedPokemonName && <p>Guessed Pokémon: {guessedPokemonName}</p>}
-            <button onClick={onClose}>Close</button>
+        <section className={`popup ${show ? 'show' : ''}`}>
+            <section className="popup-content">
+                <p>{message}</p>
+                <button onClick={onClose}>Close</button>
+            </section>
         </section>
-    </section>
     );
 }
 
