@@ -1,38 +1,30 @@
 .guess-form {
-    margin-bottom: 20px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 1rem;
-}
-
-.guess-input {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 10px; 
-}
-
-.buttons{
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .submit-button,
-.next-pokemon {
-    background-color: #43a047; /* Green color */
-    color: white;
+.skip-pokemon {
+    background-color: #43a047;
+    color: #fff;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
     border: none;
+    flex: 1; 
 }
 
 .submit-button:hover,
-.next-pokemon:hover {
-    background-color: #388e3c; /* Darker green on hover */
+.skip-pokemon:hover {
+    background-color: #388e3c;
 }

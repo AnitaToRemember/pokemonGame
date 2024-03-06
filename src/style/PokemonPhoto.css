@@ -1,14 +1,7 @@
 img {
-    width: auto;
-    height: 50vh;
+    max-width: 200px;
+    height: auto;
     border: 2px solid #ddd; 
     border-radius: 8px; 
     margin-bottom: 10px;
-}   
-
-@media (max-width: 800px) {
-    img {
-        width: 60vw;
-        height: auto;
-    }
 }
