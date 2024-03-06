@@ -16,7 +16,7 @@ nav.NavbarWrapper {
 /* Media query for small screens (max-width: 800px) */
 @media (max-width: 800px) {
     nav.NavbarWrapper {
-        padding: 1rem;
+        padding: 2rem;
     }
 
     /* Hide nav-links by default */
@@ -113,6 +113,6 @@ ul.NavLinkWrapper {
     .StyledFontAwesomeIcon {
         display: block;
         padding-top: 0;
-        margin-right: 2rem; 
+        margin-right: 4rem; 
     }
 }
