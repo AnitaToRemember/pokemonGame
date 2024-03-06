@@ -1,16 +1,13 @@
+import { Outlet } from 'react-router-dom';
 import './style/App.css'
-import PokemonGameLayout from './components/PokemonGameLayout';
-import ScoreCounter from './components/ScoreCounter';
-import { GameScore } from './context/GameContext';
+import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
     return (
       <div className="App">
-      <GameScore>
-        <PokemonGameLayout>
-          <ScoreCounter/>
-        </PokemonGameLayout>
-      </GameScore>
+        <Navbar />
+        <Outlet />
     </div>
     );
   }

@@ -1,23 +1,46 @@
-#root {
+* {
+	font-family: "Poppins", sans-serif; 
+  padding: 1rem;
+	border: 0;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
+/* Body styling */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: rgb(215, 159, 159);
+	background-color:  rgb(215, 159, 159); 
+	display: flex;
+	justify-content: center; 
+	align-items: center; 
+	margin: 0;
+	padding: 0; 
+	border: 0; 
 }
 
+/* Hide scrollbar for Chrome, Safari, and Opera */
+body::-webkit-scrollbar {
+display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+body {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+/* App styling */
 .App {
-  text-align: center;
+	text-align: center; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: center;
+	align-items: center;
 }
 
+/* Heading 1 styling */
+h1 {
+	color: #fff;
+	margin-bottom: 0.5rem;
+	font-size: 1.75rem;
+}

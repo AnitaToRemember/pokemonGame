@@ -1,0 +1,118 @@
+/* Style for the main navigation bar */
+nav.NavbarWrapper {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 2rem 3rem ;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    right: 0;
+    transition: top 0.3s; 
+    width: 100vw;
+    background-color: #52D3D8;
+}
+
+/* Media query for small screens (max-width: 800px) */
+@media (max-width: 800px) {
+    nav.NavbarWrapper {
+        padding: 1rem;
+    }
+
+    /* Hide nav-links by default */
+    .nav-links {
+        display: none;
+    }
+
+    /* Show nav-links when active */
+    .nav-links.active {
+        display: block;
+    }
+}
+
+/* Styles when the NavbarWrapper is active (e.g., hamburger menu is clicked) */
+nav.NavbarWrapper.active {
+    justify-content: center; 
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #52D3D8;
+    z-index: 1000; 
+    transition: top 0.3s;
+}
+
+/* Media query for small screens (max-width: 800px) */
+@media (max-width: 800px) {
+    div.NavLinkWrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 0;
+    }
+    ul.NavLinkWrapper {
+        flex-direction: column;
+        margin-top: 4rem;
+        gap: 2rem;
+        justify-content: center;
+    }
+}
+
+/* StyledNavLink */
+a.StyledNavLink {
+    text-decoration: none;
+    transition: 0.2s;
+    color: #38419D;
+    margin-left: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+a.StyledNavLink:last-child {
+    background: #38419D;
+    color: white;
+}
+
+a.StyledNavLink.active {
+    color: white;
+}
+
+a.StyledNavLink:hover {
+    color: #52D3D8;
+}
+
+/* Media query for small screens (max-width: 800px) */
+@media (max-width: 800px) {
+    a.StyledNavLink {
+        margin: 1rem 0;
+    }
+    div.NavLinkWrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 0;
+    }
+}
+
+ul.NavLinkWrapper {
+    list-style: none;
+    display: flex;
+}
+
+/* StyledFontAwesomeIcon */
+.StyledFontAwesomeIcon {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 21px;
+    color: #38419D;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Media query for small screens (max-width: 800px) */
+@media (max-width: 800px) {
+    .StyledFontAwesomeIcon {
+        display: block;
+        padding-top: 0;
+        margin-right: 2rem; 
+    }
+}
