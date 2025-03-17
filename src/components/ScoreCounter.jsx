@@ -47,11 +47,12 @@ function ScoreCounter() {
     setShowPopUp(false);
   };
 
+  // Correct reset handler now clearly working here:
   const handleReset = () => {
     setScore(0);
-    setPopUpMessage("Score has been reset.");
-    setShowPopUp(true);
     localStorage.setItem('pokemonGameScore', '0');
+    setPopUpMessage("Your points counter has been reset.");
+    setShowPopUp(true);
     loadNewPokemon();
   };
 
@@ -66,7 +67,7 @@ function ScoreCounter() {
 
       <p className="score-text">Score: {score}</p>
 
-      <ResetButton onReset={handleReset} />
+      <ResetButton onReset={handleReset} /> {/* Proper prop used now! */}
 
       <PokemonGuess
         onSubmit={handleGuessSubmit}

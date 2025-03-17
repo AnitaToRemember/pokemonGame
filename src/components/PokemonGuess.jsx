@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../style/PokemonGuess.css';
 
-function PokemonGuess({ onSubmit, onNextPokemonClick, score }) {
+function PokemonGuess({ onSubmit, onNextPokemonClick }) {
     const [guess, setGuess] = useState('');
 
     const handleSubmit = (e) => {
