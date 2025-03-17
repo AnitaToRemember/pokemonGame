@@ -1,3 +1,4 @@
+/* Center the Reset Button */
 .reset-button-container {
     display: flex;
     justify-content: center;
@@ -5,18 +6,39 @@
     margin-bottom: 1rem;
 }
 
+/* Stylish Reset Button */
 .reset-button {
-    background-color: #e53935; 
-    color: #fff;
-    padding: 15px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 10px; 
-    cursor: pointer;
-    border-radius: 5px;
+    background: linear-gradient(135deg, #ff5252, #e53935);
+    color: white;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
     border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    outline: none;
 }
 
+/* Button Hover Effect */
 .reset-button:hover {
-    background-color: #c62828; 
+    background: linear-gradient(135deg, #ff1744, #c62828);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Click Effect */
+.reset-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .reset-button {
+        width: 100%;
+        padding: 15px;
+    }
 }

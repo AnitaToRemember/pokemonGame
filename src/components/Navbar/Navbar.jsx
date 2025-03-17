@@ -2,51 +2,46 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import './Navbar.css'
+import "../Navbar/Navbar.css";
 
 function Navbar() {
 const [active, setActive] = useState(false);
 
-const link = [
-{ page: "Home", href: "/" },
-{ page: "About Me", href: "/about" },
-{ page: "Portfolio", href: "/portfolio" },
-{ page: "Services", href: "/services" },
-{ page: "Contact", href: "/contact" },
+const links = [
+    { page: "Home", href: "/" },
+    { page: "Portfolio", href: "https://bbds-group.com/" },
+    { page: "Services", href: "https://bbds-group.com/our-services/" },
+    { page: "LinkedIn", href: "https://www.linkedin.com/in/anabest/" },
 ];
 
+const toggleNavbar = () => {
+    setActive(!active);
+};
+
 const handleNavLinkClick = () => {
-setActive(false); 
+    setActive(false);
 };
 
 return (
-<section className="header-bar">
-    <nav className={`NavbarWrapper ${active ? "active" : ""}`}>
-    <div className="hamburger-menu">
-        <FontAwesomeIcon
-        className="StyledFontAwesomeIcon"
-        icon={faBars}
-        onClick={() => setActive(!active)}
-        />
-    </div>
+    <nav className={`navbar ${active ? "open" : ""}`}>
+    <div className="logo">Guess the Pokémon Game</div>
 
-    <div className={`nav-links ${active ? "active" : ""}`}>
-        <ul className="NavLinkWrapper">
-        {link.map((link) => (
-            <li key={link.page}>
-            <NavLink
-                to={link.href}
-                className={`StyledNavLink ${active ? "active" : ""}`}
-                onClick={handleNavLinkClick}
-            >
-                {link.page}
+    <FontAwesomeIcon
+        className="menu-icon"
+        icon={faBars}
+        onClick={toggleNavbar}
+    />
+
+    <ul className={`nav-links ${active ? "active" : ""}`}>
+        {links.map(({ page, href }) => (
+        <li key={page}>
+            <NavLink to={href} onClick={handleNavLinkClick}>
+            {page}
             </NavLink>
-            </li>
+        </li>
         ))}
-        </ul>
-    </div>
+    </ul>
     </nav>
-</section>
 );
 }
 

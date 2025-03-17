@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../style/PokemonGuess.css';
 
-function PokemonGuess({ onSubmit, onNextPokemonClick }) {
+function PokemonGuess({ onSubmit, onNextPokemonClick, score }) {
     const [guess, setGuess] = useState('');
 
     const handleSubmit = (e) => {
@@ -11,26 +11,34 @@ function PokemonGuess({ onSubmit, onNextPokemonClick }) {
     };
 
     const handleNextPokemon = () => {
-        onNextPokemonClick(); 
+        onNextPokemonClick();
     };
 
     return (
-        <form className="guess-form" onSubmit={handleSubmit}>
-        <input
-            type="text"
-            value={guess}
-            onChange={(e) => setGuess(e.target.value)}
-            placeholder="Enter the Pokemon name"
-        />
-        <section className='buttons'>
-            <button className="submit-button" type="submit">
-                Guess Pokémon name
-            </button>
-            <button className="skip-pokemon" type="button" onClick={handleNextPokemon}>
-                Skip Pokémon
-            </button>
-        </section>
-        </form>
+        <div className="pokedex-container">
+            {/* Pokédex Display Screen */}
+            <div className="pokedex-screen">
+                <div className="score-display">Score: {score}</div>
+            </div>
+
+            <form className="guess-form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Enter Pokémon Name"
+                    value={guess}
+                    onChange={(e) => setGuess(e.target.value)}
+                    className="guess-input"
+                />
+                <div className="controls">
+                    <button type="submit" className="submit-button">
+                        Guess Pokémon Name
+                    </button>
+                    <button type="button" className="skip-button" onClick={handleNextPokemon}>
+                        Skip Pokémon
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }
 
