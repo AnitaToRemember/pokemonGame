@@ -1,30 +1,43 @@
-import { useState } from 'react';
-import { PokemonGame } from '../context/GameContext';
-import PopUp from './PopUp';
-import '../style/ResetButton.css'
+import { useEffect, useRef } from 'react';
+import '../style/PopUp.css';
 
-function ResetButton() {
-    const { setPoint } = PokemonGame();
-    const [showPopUp, setShowPopUp] = useState(false);
+function PopUp({ message, onClose, show }) {
+    const popupRef = useRef(null);
 
-    const handleReset = () => {
-        setPoint(0);
-        localStorage.setItem('pokemonGameScore', '0');
-        setShowPopUp(true);
-    };
+    useEffect(() => {
+        if (!show) return; // if popup isn't shown, don't add listeners
 
-    const handlePopUpClose = () => {
-        setShowPopUp(false);
-    };
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        const handleClickOutside = (e) => {
+            if (popupRef.current && !popupRef.current.contains(e.target)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [show, onClose]);
+
+    if (!show) return null;
 
     return (
-        <section className="reset-button-container">
-            <button className='reset-button' onClick={handleReset}>Reset Points</button>
-            {showPopUp && (
-                <PopUp message="Your points counter has been reset." onClose={handlePopUpClose} />
-            )}
-        </section>
+        <div className="popup-overlay">
+            <div className="popup-content" ref={popupRef}>
+                <p>{message}</p>
+                <button className="popup-close-btn" onClick={onClose}>Close</button>
+            </div>
+        </div>
     );
 }
 
-export default ResetButton;
+export default PopUp;

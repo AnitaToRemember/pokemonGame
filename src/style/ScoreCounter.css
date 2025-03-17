@@ -1,44 +1,33 @@
-/* Center the Reset Button */
-.reset-button-container {
+/* Score Section Container */
+.score-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    background:  #f04e4e;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: fit-content;
+    min-width: 200px;
+    margin: 20px auto;
 }
 
-/* Stylish Reset Button */
-.reset-button {
-    background: linear-gradient(135deg, #ff5252, #e53935);
-    color: white;
-    padding: 12px 25px;
-    font-size: 14px;
+/* Score Text */
+.score-text {
+    font-size: 28px;
     font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    outline: none;
 }
 
-/* Button Hover Effect */
-.reset-button:hover {
-    background: linear-gradient(135deg, #ff1744, #c62828);
-    transform: scale(1.05);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-}
 
-/* Button Click Effect */
-.reset-button:active {
-    transform: scale(0.95);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Adjustments */
+/* Responsive Design */
 @media (max-width: 600px) {
-    .reset-button {
-        width: 100%;
-        padding: 15px;
+    .score-section {
+        width: 90%;
+        padding: 20px;
     }
 }

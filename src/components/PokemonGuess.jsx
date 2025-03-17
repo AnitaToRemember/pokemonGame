@@ -16,11 +16,6 @@ function PokemonGuess({ onSubmit, onNextPokemonClick, score }) {
 
     return (
         <div className="pokedex-container">
-            {/* Pokédex Display Screen */}
-            <div className="pokedex-screen">
-                <div className="score-display">Score: {score}</div>
-            </div>
-
             <form className="guess-form" onSubmit={handleSubmit}>
                 <input
                     type="text"

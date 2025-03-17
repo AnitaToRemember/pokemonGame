@@ -1,78 +1,79 @@
 /* Navbar */
 .navbar {
-  width: 100%;
-  background-color: #bb0000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em 1em;
-  position: relative;
-}
-
-.navbar .logo {
-  font-size: 1.3rem;
-  color: #fff;
-}
-
-.navbar .menu-icon {
-  display: none;
-  font-size: 1.5rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-.navbar .nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.navbar .nav-links li {
-  margin: 0 0.5em;
-}
-
-.navbar .nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 0.3em 0.6em;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.navbar .nav-links a:hover {
-  background-color: #ffcb05;
-  color: #cc0000;
-}
-
-.navbar .nav-links a.active {
-  background-color: #ffcb05;
-  color: #cc0000;
-}
-
-/* Mobile Responsive Navbar */
-@media (max-width: 600px) {
-  .navbar .nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: #bb0000;
-    position: absolute;
-    top: 100%;
-    right: 0;
     width: 100%;
-    text-align: right;
+    background-color: #bb0000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.5em 1em;
-    border-top: 2px solid #333;
+    position: relative;
   }
-
-  .navbar .nav-links li {
-    margin: 0.5em 0;
+  
+  .navbar .logo {
+    font-size: 1.3rem;
+    color: #fff;
   }
-
+  
   .navbar .menu-icon {
-    display: block;
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
   }
-
-  .navbar.open .nav-links {
+  
+  .navbar .nav-links {
+    list-style: none;
     display: flex;
   }
-}
+  
+  .navbar .nav-links li {
+    margin: 0 0.5em;
+  }
+  
+  .navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .navbar .nav-links a:hover {
+    background-color: #ffcb05;
+    color: #cc0000;
+  }
+  
+  .navbar .nav-links a.active {
+    background-color: #ffcb05;
+    color: #cc0000;
+  }
+  
+  /* Mobile Responsive Navbar */
+  @media (max-width: 600px) {
+    .navbar .nav-links {
+      display: none;
+      flex-direction: column;
+      background-color: #bb0000;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      text-align: right;
+      padding: 0.5em 1em;
+      border-top: 2px solid #333;
+    }
+  
+    .navbar .nav-links li {
+      margin: 0.5em 0;
+    }
+  
+    .navbar .menu-icon {
+      display: block;
+    }
+  
+    .navbar.open .nav-links {
+      display: flex;
+    }
+  }
+  

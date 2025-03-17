@@ -1,77 +1,85 @@
-import { useState, useEffect } from 'react';
-import useRandomPokemon from '../hooks/useRandomPokemon';
+import { useEffect, useState, useCallback } from 'react';
 import PokemonGuess from './PokemonGuess';
 import PokemonPhoto from './PokemonPhoto';
 import PopUp from './PopUp';
 import ResetButton from './ResetButton';
-import '../style/PopUp.css';
+import useRandomPokemon from '../hooks/useRandomPokemon';
 import '../style/ScoreCounter.css';
 
 function ScoreCounter() {
-    const [score, setScore] = useState(() => Number(localStorage.getItem('pokemonGameScore') || 0));
-    const [showPopUp, setShowPopUp] = useState(false);
-    const [popUpMessage, setPopUpMessage] = useState('');
-    const [guessedPokemonName, setGuessedPokemonName] = useState('');
-    
-    const { randomPokemon, fetchNewPokemon } = useRandomPokemon();
+  const [score, setScore] = useState(() => Number(localStorage.getItem('pokemonGameScore') || 0));
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popUpMessage, setPopUpMessage] = useState('');
+  const { randomPokemon, fetchNewPokemon } = useRandomPokemon();
 
-    useEffect(() => {
-        localStorage.setItem('pokemonGameScore', score);
-    }, [score]);
+  const loadNewPokemon = useCallback(() => {
+    fetchNewPokemon();
+  }, [fetchNewPokemon]);
 
-    const handleGuessSubmit = (guess) => {
-        if (guess.trim().toLowerCase() === randomPokemon.pokemon.name.toLowerCase()) {
-            setScore((prevScore) => {
-                const newScore = prevScore + 1;
-                localStorage.setItem('pokemonGameScore', newScore);
-                return newScore;
-            });
-            setPopUpMessage('🎉 Congratulations! You guessed correctly!');
-        } else {
-            setPopUpMessage(`❌ Oops! Correct answer was ${randomPokemon.pokemon.name}`);
-        }
-        setGuessedPokemonName(randomPokemon.pokemon.name);
-        setShowPopUp(true);
-        fetchNewPokemon();
-    };
+  useEffect(() => {
+    loadNewPokemon();
+  }, [loadNewPokemon]);
 
-    const handleSkip = () => {
-        setGuessedPokemonName(randomPokemon.pokemon.name);
-        setPopUpMessage(`You skipped! The correct answer was: ${randomPokemon.pokemon.name}`);
-        setShowPopUp(true);
-        fetchNewPokemon();
-    };
+  useEffect(() => {
+    localStorage.setItem('pokemonGameScore', score);
+  }, [score]);
 
-    const handlePopUpClose = () => {
-        setShowPopUp(false);
-    };
+  const handleGuessSubmit = (guess) => {
+    if (randomPokemon && randomPokemon.pokemon) {
+      if (guess.toLowerCase().trim() === randomPokemon.pokemon.name.toLowerCase()) {
+        setScore(prev => prev + 1);
+        setPopUpMessage('Correct! 🎉');
+      } else {
+        setPopUpMessage(`Wrong! Correct Pokémon: ${randomPokemon.pokemon.name}`);
+      }
+      setShowPopUp(true);
+      loadNewPokemon();
+    }
+  };
 
-    return (
-        <section className="pokedex-container">
-            <PokemonPhoto
-                imageUrl={randomPokemon?.pokemon?.sprites?.other?.home?.front_default}
-                altText={randomPokemon?.pokemon?.name || 'Pokémon'}
-            />
+  const handleSkip = () => {
+    setPopUpMessage(`Skipped! The correct Pokémon was: ${randomPokemon.pokemon.name}`);
+    setShowPopUp(true);
+    loadNewPokemon();
+  };
 
-            <div className="score-text">SCORE: {score}</div>
-            <ResetButton onReset={() => {
-                setScore(0);
-                localStorage.setItem('pokemonGameScore', 0);
-            }} />
+  const handlePopUpClose = () => {
+    setShowPopUp(false);
+  };
 
-            <PokemonGuess 
-                onSubmit={handleGuessSubmit}
-                onNextPokemonClick={handleSkip}
-            />
+  const handleReset = () => {
+    setScore(0);
+    setPopUpMessage("Score has been reset.");
+    setShowPopUp(true);
+    localStorage.setItem('pokemonGameScore', '0');
+    loadNewPokemon();
+  };
 
-            <PopUp
-                message={popUpMessage}
-                show={showPopUp}
-                onClose={handlePopUpClose}
-                guessedPokemonName={guessedPokemonName}
-            />
-        </section>
-    );
+  return (
+    <section className="score-section">
+      {randomPokemon?.pokemon && (
+        <PokemonPhoto
+          imageUrl={randomPokemon.pokemon.sprites.other.home.front_default}
+          altText={randomPokemon.pokemon.name}
+        />
+      )}
+
+      <p className="score-text">Score: {score}</p>
+
+      <ResetButton onReset={handleReset} />
+
+      <PokemonGuess
+        onSubmit={handleGuessSubmit}
+        onNextPokemonClick={handleSkip}
+      />
+
+      <PopUp
+        message={popUpMessage}
+        show={showPopUp}
+        onClose={handlePopUpClose}
+      />
+    </section>
+  );
 }
 
 export default ScoreCounter;
