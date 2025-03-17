@@ -19,7 +19,6 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-    overflow: hidden; /* Prevents unwanted scrollbars */
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
